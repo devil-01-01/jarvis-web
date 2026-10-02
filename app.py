@@ -24,8 +24,8 @@ if not GROQ_KEY and not OPENAI_KEY:
 groq_client = Groq(api_key=GROQ_KEY) if GROQ_KEY else None
 openai_client = OpenAI(api_key=OPENAI_KEY) if OPENAI_KEY else None
 
-MODEL_CHATGPT = "gpt-4o-mini" 
-MODEL_MATHS = "llama-3.3-70b-versatile"
+MODEL_CHATGPT = "openai/gpt-oss-120b" 
+MODEL_MATHS = "openai/gpt-oss-120b"
 MODEL_MUSIC = "mixtral-8x7b-32768"
 
 t1, t2, t3, t4 = st.tabs(["ChatGPT Chat", "Maths (Groq)", "Image Generation", "Music Studio"])
@@ -55,7 +55,7 @@ with t1:
                 a = r.choices[0].message.content
             elif groq_client:
                 r = groq_client.chat.completions.create(
-                    model="llama-3.1-8b-instant",
+                    model="openai/gpt-oss-120b",
                     messages=[{"role": x["r"], "content": x["t"]} for x in st.session_state.c]
                 )
                 a = r.choices[0].message.content
@@ -69,7 +69,7 @@ with t1:
         st.session_state.c.append({"r": "assistant", "t": a})
 
 with t2:
-    st.caption(f"Model: {MODEL_MATHS}")
+    st.caption(f"Model: {openai/gpt-oss-120b}")
     q = st.text_area("Enter your mathematical problem:")
     if st.button("Execute Solver"):
         if not groq_client:
@@ -78,7 +78,7 @@ with t2:
             with st.spinner("Processing equations..."):
                 try:
                     r = groq_client.chat.completions.create(
-                        model=MODEL_MATHS,
+                        model="openai/gpt-oss-120b",
                         messages=[{"role": "user", "content": f"Solve step by step: {q}"}]
                     )
                     st.markdown(r.choices[0].message.content)
