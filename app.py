@@ -69,7 +69,7 @@ with t1:
         st.session_state.c.append({"r": "assistant", "t": a})
 
 with t2:
-    st.caption(f"Model: {openai/gpt-oss-120b}")
+    st.caption(f"Model: {"openai/gpt-oss-120b")
     q = st.text_area("Enter your mathematical problem:")
     if st.button("Execute Solver"):
         if not groq_client:
